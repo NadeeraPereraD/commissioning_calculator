@@ -10,6 +10,25 @@ You can see Figma design of this project using this link. (https://www.figma.com
 
 ![SIGNUP!](/design_assests/Signup%20Page.jpg)
 
+### Home Screen
+![HOME!](/design_assests/Home%20Page.png)
+
+### Services Screen
+![SERVICES!](/design_assests/Services.jpg)
+
+### Add Services Screen
+![ADDSERVICES!](/design_assests/Add%20services.jpg)
+
+### New Entry Screen
+![NEWENTRY!](/design_assests/New%20Entry.jpg)
+
+### Past Entry Screen
+![PASTENTRY!](/design_assests/Past%20Entry.jpg)
+
+### Read Data Screen
+![READDATA!](/design_assests/Read%20Data.jpg)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
