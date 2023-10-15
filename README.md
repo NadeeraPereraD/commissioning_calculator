@@ -1,6 +1,14 @@
 # commissioning_calculator
 
-A new Flutter project.
+A new Flutter project to calculate commissioning of services. Here we can add our services and relevant commissioning percentage according to the services. Finally we can get detail list of previous month and current month.
+
+## Design View
+
+You can see Figma design of this project using this link. (https://www.figma.com/file/mfoGFnBvUr8aYpoi8rot0o/Commission-Calculator?type=design&node-id=14-56&mode=design&t=o77SUgSr3H0MnyP5-0)
+
+# Profile Details Screen
+
+<img src="/design_assests/Signup Page.jpg>
 
 ## Getting Started
 
