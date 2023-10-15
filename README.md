@@ -6,7 +6,7 @@ A new Flutter project to calculate commissioning of services. Here we can add ou
 
 You can see Figma design of this project using this link. (https://www.figma.com/file/mfoGFnBvUr8aYpoi8rot0o/Commission-Calculator?type=design&node-id=14-56&mode=design&t=o77SUgSr3H0MnyP5-0)
 
-# Profile Details Screen
+### Profile Details Screen
 
 <img src="/design_assests/Signup Page.jpg>
 
