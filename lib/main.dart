@@ -1,4 +1,6 @@
+import 'package:commissioning_calculator/screens/home_page.dart';
 import 'package:commissioning_calculator/widgets/buttons.dart';
+import 'package:commissioning_calculator/widgets/sized_box.dart';
 import 'package:commissioning_calculator/widgets/text.dart';
 import 'package:commissioning_calculator/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Commissioning Calculator',
-      home: SignIn(),
+      home: HomePage(),
     );
   }
 }
@@ -42,12 +44,12 @@ class _SignInState extends State<SignIn> {
   //   );
   // }
 
-  Widget sizedBox(double height, double width) {
-    return SizedBox(
-      height: height,
-      width: width,
-    );
-  }
+  // Widget sizedBox(double height, double width) {
+  //   return SizedBox(
+  //     height: height,
+  //     width: width,
+  //   );
+  // }
 
   // Widget textField(String name) {
   //   return Padding(
@@ -96,39 +98,46 @@ class _SignInState extends State<SignIn> {
                       size: 35,
                       textDecoration: TextDecoration.underline,
                      ),
-                  sizedBox(35.0, 0.0),                  
+                  //sizedBox(35.0, 0.0),  
+                  SizeBox(height: 35.0, width: 0.0),                
                      //sizedBox(15.0),
                     Flexible(
                       child: Row(
                         children: [
                           ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Your Name'),
-                          sizedBox(0.0, 15.0),
+                          //sizedBox(0.0, 15.0),
+                          SizeBox(height: 0.0, width: 15.0),  
                           TextFields(width: 265, hintText: 'Enter your name'),
                         ],
 
                      )),
-                     sizedBox(15.0, 0.0),
+                     //sizedBox(15.0, 0.0),
+                     SizeBox(height: 15.0, width: 0.0),  
                      Flexible(
                       child: Row(
                         children: [
                           ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Work Place'),
-                          sizedBox(0.0, 15.0),
+                          //sizedBox(0.0, 15.0),
+                          SizeBox(height: 0.0, width: 15.0),  
                           TextFields(width: 265, hintText: 'Enter work place'),
                         ],
 
                      )),
-                     sizedBox(15.0, 0.0),
+                     //sizedBox(15.0, 0.0),
+                     SizeBox(height: 15.0, width: 0.0),  
                      Flexible(
                       child: Row(
                         children: [
                           ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Designation'),
-                          sizedBox(0.0, 10.0),
+                          //sizedBox(0.0, 10.0),
+                          SizeBox(height: 0.0, width: 10.0),  
                           TextFields(width: 265, hintText: 'Enter designation'),
                         ],
 
                      )),
 
-                     sizedBox(25.0, 0.0),
+                     //sizedBox(25.0, 0.0),
+                     SizeBox(height: 25.0, width: 0.0),  
                     
                      Padding(
                        padding: const EdgeInsets.only(bottom: 16.0,right: 20.0),
@@ -136,26 +145,29 @@ class _SignInState extends State<SignIn> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                          children: [
-                           Buttons(
-                            backgroundColor: Colors.blue, 
-                            text: 'Save', 
-                            textColor: Colors.white, 
-                            size: 25.0, 
-                            fontWeight: FontWeight.bold,
-                            radius: 20.0,
-                            width: 140,
-                            height: 65,
-                            ),
-                            sizedBox(0.0, 25.0),
                             Buttons(
-                            backgroundColor: Colors.blue, 
-                            text: 'Clear', 
-                            textColor: Colors.white, 
-                            size: 25.0, 
-                            fontWeight: FontWeight.bold,
-                            radius: 20.0,
-                            width: 140,
-                            height: 65,
+                              backgroundColor: Colors.blue, 
+                              text: 'Save', 
+                              textColor: Colors.white, 
+                              size: 25.0, 
+                              fontWeight: FontWeight.bold,
+                              radius: 20.0,
+                              width: 140,
+                              height: 65, 
+                              image: const AssetImage(''),
+                            ),
+                            //sizedBox(0.0, 25.0),
+                            SizeBox(height: 0.0, width: 25.0),  
+                            Buttons(
+                              backgroundColor: Colors.blue, 
+                              text: 'Clear', 
+                              textColor: Colors.white, 
+                              size: 25.0, 
+                              fontWeight: FontWeight.bold,
+                              radius: 20.0,
+                              width: 140,
+                              height: 65,
+                              image: const AssetImage(''),
                             ),
                          ],
                        ),

@@ -1,3 +1,10 @@
 {
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "cSpell.words": [
+        "buttonimages",
+        "newentry",
+        "pastentry",
+        "readdata",
+        "servicebtn"
+    ]
 }

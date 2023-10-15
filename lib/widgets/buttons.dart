@@ -10,6 +10,10 @@ class Buttons extends StatelessWidget {
   double radius;
   double width;
   double height;
+  bool? isImage;
+  double? imgHeight;
+  double? imgWidth;
+  AssetImage image;
 
   Buttons({
     super.key,
@@ -21,38 +25,70 @@ class Buttons extends StatelessWidget {
     required this.radius,
     required this.width,
     required this.height,
+    this.isImage = false,
+    this.imgHeight,
+    this.imgWidth,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      style: TextButton.styleFrom(
-        backgroundColor: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius),
-        ),
-        minimumSize: Size(width, height),
-      ),
-      // style: ButtonStyle(
-      //   //backgroundColor: Colors.blue,
-      //   shape: MaterialStateProperty.all(
-      //     RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(25.0),
-      //       side: const BorderSide(color: Colors.blue),
-      //     ),
-      //   ),
+    return isImage == false
+        ? TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              backgroundColor: backgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+              ),
+              minimumSize: Size(width, height),
+            ),
+            // style: ButtonStyle(
+            //   //backgroundColor: Colors.blue,
+            //   shape: MaterialStateProperty.all(
+            //     RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(25.0),
+            //       side: const BorderSide(color: Colors.blue),
+            //     ),
+            //   ),
+            // ),
 
-      // ),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: size,
+                fontWeight: fontWeight,
+              ),
+            ),
+          )
+        : TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              backgroundColor: backgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+              ),
+              minimumSize: Size(width, height),
+            ),
 
-      child: Text(
-        text,
-        style: TextStyle(
-          color: textColor,
-          fontSize: size,
-          fontWeight: fontWeight,
-        ),
-      ),
-    );
+            child: Row(
+              children: [
+                Ink.image(
+                  width: imgWidth,
+                  height: imgHeight,
+                  image: image,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: size,
+                    fontWeight: fontWeight,
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
