@@ -8,11 +8,7 @@ You can see Figma design of this project using this link. (https://www.figma.com
 
 ### Profile Details Screen
 
-<img 
-  src="/design_assests/Signup Page.jpg
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+![SIGNUP!](/design_assests/Signup%20Page.jpg)
 
 ## Getting Started
 
