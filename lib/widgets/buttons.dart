@@ -14,6 +14,10 @@ class Buttons extends StatelessWidget {
   double? imgHeight;
   double? imgWidth;
   AssetImage image;
+  final Function() onPress;
+  IconData? icon;
+  bool? isIcon;
+  IconData? iconColor;
 
   Buttons({
     super.key,
@@ -29,13 +33,17 @@ class Buttons extends StatelessWidget {
     this.imgHeight,
     this.imgWidth,
     required this.image,
+    required this.onPress,
+    this.icon,
+    this.isIcon = false,
+    this.iconColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isImage == false
+    return isImage == isIcon
         ? TextButton(
-            onPressed: () {},
+            onPressed: onPress,
             style: TextButton.styleFrom(
               backgroundColor: backgroundColor,
               shape: RoundedRectangleBorder(
@@ -62,33 +70,62 @@ class Buttons extends StatelessWidget {
               ),
             ),
           )
-        : TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              backgroundColor: backgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-              ),
-              minimumSize: Size(width, height),
-            ),
-
-            child: Row(
-              children: [
-                Ink.image(
-                  width: imgWidth,
-                  height: imgHeight,
-                  image: image,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: size,
-                    fontWeight: fontWeight,
+        : isImage == true
+            ? TextButton(
+                onPressed: onPress,
+                style: TextButton.styleFrom(
+                  backgroundColor: backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(radius),
                   ),
+                  minimumSize: Size(width, height),
                 ),
-              ],
-            ),
-          );
+                child: Row(
+                  children: [
+                    Ink.image(
+                      width: imgWidth,
+                      height: imgHeight,
+                      image: image,
+                    ),
+                    Text(
+                      text,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: size,
+                        fontWeight: fontWeight,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : TextButton(
+                onPressed: onPress,
+                style: TextButton.styleFrom(
+                  backgroundColor: backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(radius),
+                  ),
+                  minimumSize: Size(width, height),
+                ),
+                child: Row(
+                  children: [
+                    // Ink.image(
+                    //   width: imgWidth,
+                    //   height: imgHeight,
+                    //   image: image,
+                    // ),
+                    Icon(iconColor),
+                    Icon(icon),
+                    Text(
+                      text,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: size,
+                        fontWeight: fontWeight,
+                      ),
+                    ),
+                  ],
+                ),
+              );
   }
 }

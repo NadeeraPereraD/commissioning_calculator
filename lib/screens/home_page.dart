@@ -1,3 +1,7 @@
+import 'package:commissioning_calculator/screens/new_entry.dart';
+import 'package:commissioning_calculator/screens/past_entry.dart';
+import 'package:commissioning_calculator/screens/read_data.dart';
+import 'package:commissioning_calculator/screens/services.dart';
 import 'package:commissioning_calculator/widgets/buttons.dart';
 import 'package:commissioning_calculator/widgets/sized_box.dart';
 import 'package:commissioning_calculator/widgets/text.dart';
@@ -11,6 +15,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void newEntry() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return const NewEntry();
+    }));
+  }
+
+  void pastEntry() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return const PastEntry();
+    }));
+  }
+
+  void services() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return const Services();
+    }));
+  }
+
+  void readData() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return const ReadData();
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +125,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Buttons(
+                  onPress: newEntry,
                   backgroundColor: Colors.grey,
                   text: 'New Entry',
                   textColor: Colors.black,
@@ -108,7 +137,8 @@ class _HomePageState extends State<HomePage> {
                   isImage: true,
                   imgHeight: 90,
                   imgWidth: 100,
-                  image: const AssetImage('assets/images/button_images/new_entry.png'),
+                  image: const AssetImage(
+                      'assets/images/button_images/new_entry.png'),
                 ),
                 Buttons(
                   backgroundColor: Colors.grey,
@@ -122,7 +152,9 @@ class _HomePageState extends State<HomePage> {
                   isImage: true,
                   imgHeight: 90,
                   imgWidth: 100,
-                  image: const AssetImage('assets/images/button_images/past_entry.png'),
+                  image: const AssetImage(
+                      'assets/images/button_images/past_entry.png'),
+                  onPress: pastEntry,
                 ),
               ],
             ),
@@ -146,7 +178,9 @@ class _HomePageState extends State<HomePage> {
                   isImage: true,
                   imgHeight: 90,
                   imgWidth: 100,
-                  image: const AssetImage('assets/images/button_images/services_btn.png'),
+                  image: const AssetImage(
+                      'assets/images/button_images/services_btn.png'),
+                  onPress: services,
                 ),
                 Buttons(
                   backgroundColor: Colors.grey,
@@ -160,13 +194,16 @@ class _HomePageState extends State<HomePage> {
                   isImage: true,
                   imgHeight: 90,
                   imgWidth: 100,
-                  image: const AssetImage('assets/images/button_images/read_data.png'),
+                  image: const AssetImage(
+                      'assets/images/button_images/read_data.png'),
+                  onPress: readData,
                 ),
               ],
             ),
           ),
         ],
       ),
+      //bottomNavigationBar: const BottomTabNavigator(),
     );
   }
 }

@@ -93,85 +93,93 @@ class _SignInState extends State<SignIn> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ProfTextField(
-                      text: 'Profile Details',
-                      fontWeight: FontWeight.bold,
-                      size: 35,
-                      textDecoration: TextDecoration.underline,
-                     ),
-                  //sizedBox(35.0, 0.0),  
-                  SizeBox(height: 35.0, width: 0.0),                
-                     //sizedBox(15.0),
-                    Flexible(
+                    text: 'Profile Details',
+                    fontWeight: FontWeight.bold,
+                    size: 35,
+                    textDecoration: TextDecoration.underline,
+                  ),
+                  //sizedBox(35.0, 0.0),
+                  SizeBox(height: 35.0, width: 0.0),
+                  //sizedBox(15.0),
+                  Flexible(
                       child: Row(
-                        children: [
-                          ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Your Name'),
-                          //sizedBox(0.0, 15.0),
-                          SizeBox(height: 0.0, width: 15.0),  
-                          TextFields(width: 265, hintText: 'Enter your name'),
-                        ],
-
-                     )),
-                     //sizedBox(15.0, 0.0),
-                     SizeBox(height: 15.0, width: 0.0),  
-                     Flexible(
+                    children: [
+                      ProfTextField(
+                          size: 20,
+                          fontWeight: FontWeight.w500,
+                          text: 'Your Name'),
+                      //sizedBox(0.0, 15.0),
+                      SizeBox(height: 0.0, width: 15.0),
+                      TextFields(width: 265, hintText: 'Enter your name'),
+                    ],
+                  )),
+                  //sizedBox(15.0, 0.0),
+                  SizeBox(height: 15.0, width: 0.0),
+                  Flexible(
                       child: Row(
-                        children: [
-                          ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Work Place'),
-                          //sizedBox(0.0, 15.0),
-                          SizeBox(height: 0.0, width: 15.0),  
-                          TextFields(width: 265, hintText: 'Enter work place'),
-                        ],
-
-                     )),
-                     //sizedBox(15.0, 0.0),
-                     SizeBox(height: 15.0, width: 0.0),  
-                     Flexible(
+                    children: [
+                      ProfTextField(
+                          size: 20,
+                          fontWeight: FontWeight.w500,
+                          text: 'Work Place'),
+                      //sizedBox(0.0, 15.0),
+                      SizeBox(height: 0.0, width: 15.0),
+                      TextFields(width: 265, hintText: 'Enter work place'),
+                    ],
+                  )),
+                  //sizedBox(15.0, 0.0),
+                  SizeBox(height: 15.0, width: 0.0),
+                  Flexible(
                       child: Row(
-                        children: [
-                          ProfTextField(size: 20, fontWeight: FontWeight.w500, text: 'Designation'),
-                          //sizedBox(0.0, 10.0),
-                          SizeBox(height: 0.0, width: 10.0),  
-                          TextFields(width: 265, hintText: 'Enter designation'),
-                        ],
+                    children: [
+                      ProfTextField(
+                          size: 20,
+                          fontWeight: FontWeight.w500,
+                          text: 'Designation'),
+                      //sizedBox(0.0, 10.0),
+                      SizeBox(height: 0.0, width: 10.0),
+                      TextFields(width: 265, hintText: 'Enter designation'),
+                    ],
+                  )),
 
-                     )),
+                  //sizedBox(25.0, 0.0),
+                  SizeBox(height: 25.0, width: 0.0),
 
-                     //sizedBox(25.0, 0.0),
-                     SizeBox(height: 25.0, width: 0.0),  
-                    
-                     Padding(
-                       padding: const EdgeInsets.only(bottom: 16.0,right: 20.0),
-                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                         children: [
-                            Buttons(
-                              backgroundColor: Colors.blue, 
-                              text: 'Save', 
-                              textColor: Colors.white, 
-                              size: 25.0, 
-                              fontWeight: FontWeight.bold,
-                              radius: 20.0,
-                              width: 140,
-                              height: 65, 
-                              image: const AssetImage(''),
-                            ),
-                            //sizedBox(0.0, 25.0),
-                            SizeBox(height: 0.0, width: 25.0),  
-                            Buttons(
-                              backgroundColor: Colors.blue, 
-                              text: 'Clear', 
-                              textColor: Colors.white, 
-                              size: 25.0, 
-                              fontWeight: FontWeight.bold,
-                              radius: 20.0,
-                              width: 140,
-                              height: 65,
-                              image: const AssetImage(''),
-                            ),
-                         ],
-                       ),
-                     ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0, right: 20.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Buttons(
+                          backgroundColor: Colors.blue,
+                          text: 'Save',
+                          textColor: Colors.white,
+                          size: 25.0,
+                          fontWeight: FontWeight.bold,
+                          radius: 20.0,
+                          width: 140,
+                          height: 65,
+                          image: const AssetImage(''),
+                          onPress: () {},
+                        ),
+                        //sizedBox(0.0, 25.0),
+                        SizeBox(height: 0.0, width: 25.0),
+                        Buttons(
+                          backgroundColor: Colors.blue,
+                          text: 'Clear',
+                          textColor: Colors.white,
+                          size: 25.0,
+                          fontWeight: FontWeight.bold,
+                          radius: 20.0,
+                          width: 140,
+                          height: 65,
+                          image: const AssetImage(''),
+                          onPress: () {},
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
