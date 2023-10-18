@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:commissioning_calculator/screens/new_entry.dart';
 import 'package:commissioning_calculator/screens/past_entry.dart';
 import 'package:commissioning_calculator/screens/read_data.dart';
@@ -6,6 +8,7 @@ import 'package:commissioning_calculator/widgets/buttons.dart';
 import 'package:commissioning_calculator/widgets/sized_box.dart';
 import 'package:commissioning_calculator/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +18,54 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var dateTime = DateTime.now();
+  String _timeString = '';
+  String _dateString = '';
+
+  @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    _dateString = _formatDate(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    final String formattedDate = _formatDate(now);
+    setState(() {
+      _timeString = formattedDateTime;
+      _dateString = formattedDate;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('hh:mm:ss').format(dateTime);
+  }
+
+  String _formatDate(DateTime dateTime) {
+    return DateFormat('dd/MM/yyyy').format(dateTime);
+  }
+
+  String status = 'Good Morning';
+
+  getStatus() {
+    if (dateTime.hour >= 12 && dateTime.hour < 17) {
+      setState(() {
+        status = 'Good Afternoon';
+      });
+    } else if (dateTime.hour >= 17) {
+      setState(() {
+        status = 'Good Evening';
+      });
+    } else {
+      setState(() {
+        status = 'Good Morning';
+      });
+    }
+  }
+
   void newEntry() {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
       return const NewEntry();
@@ -41,9 +92,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    getStatus();
     return Scaffold(
       body: Column(
         children: [
+          //getStatus(),
           Flexible(
             flex: 2,
             child: Container(
@@ -57,9 +110,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProfTextField(
-                          size: 20,
-                          fontWeight: FontWeight.w700,
-                          text: 'Good Morning!'),
+                          size: 20, fontWeight: FontWeight.w700, text: status),
                       SizeBox(height: 5.0, width: 0.0),
                       ProfTextField(
                           size: 17,
@@ -96,11 +147,15 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ProfTextField(
                     size: 25.0, fontWeight: FontWeight.w600, text: 'Date'),
                 ProfTextField(
-                    size: 25.0, fontWeight: FontWeight.w600, text: 'Date'),
+                    size: 25.0,
+                    fontWeight: FontWeight.w600,
+                    text: _dateString
+                    ),
               ],
             ),
           ),
@@ -109,11 +164,12 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ProfTextField(
                     size: 25.0, fontWeight: FontWeight.w600, text: 'Time'),
                 ProfTextField(
-                    size: 25.0, fontWeight: FontWeight.w600, text: 'Time'),
+                    size: 25.0, fontWeight: FontWeight.w600, text: _timeString),
               ],
             ),
           ),
