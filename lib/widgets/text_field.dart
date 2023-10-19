@@ -5,14 +5,19 @@ import 'package:flutter/material.dart';
 class TextFields extends StatelessWidget {
   final String hintText;
   double width;
-  TextFields({super.key, required this.hintText, required this.width});
+  TextEditingController? controller;
+  TextFields(
+      {super.key,
+      required this.hintText,
+      required this.width,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
       child: TextField(
-        //controller: txt_name,
+        controller: controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           hintText: hintText,

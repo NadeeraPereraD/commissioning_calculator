@@ -1,9 +1,12 @@
+// ignore_for_file: non_constant_identifier_names, invalid_use_of_visible_for_testing_member
+
 import 'package:commissioning_calculator/screens/home_page.dart';
 import 'package:commissioning_calculator/widgets/buttons.dart';
 import 'package:commissioning_calculator/widgets/sized_box.dart';
 import 'package:commissioning_calculator/widgets/text.dart';
 import 'package:commissioning_calculator/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const App());
@@ -16,7 +19,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Commissioning Calculator',
-      home: HomePage(),
+      home: SignIn(),
     );
   }
 }
@@ -29,42 +32,84 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  // TextEditingController txt_name = TextEditingController();
+  TextEditingController txt_name = TextEditingController();
+  TextEditingController txt_workPlace = TextEditingController();
+  TextEditingController txt_designation = TextEditingController();
 
-  // Widget textLabel(
-  //     String details, double fontSize, dynamic fontWeight, dynamic decoration) {
-  //   //this.details = details;
-  //   return Text(
-  //     details,
-  //     style: TextStyle(
-  //       fontSize: fontSize,
-  //       fontWeight: fontWeight,
-  //       decoration: decoration,
-  //     ),
-  //   );
-  // }
+  static String name = '';
+  static String workPlace = '';
+  static String designation = '';
 
-  // Widget sizedBox(double height, double width) {
-  //   return SizedBox(
-  //     height: height,
-  //     width: width,
-  //   );
-  // }
+  late bool _counter;
 
-  // Widget textField(String name) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
-  //     child: TextField(
-  //       controller: txt_name,
-  //       decoration: InputDecoration(
-  //         border: const OutlineInputBorder(),
-  //         hintText: name,
-  //         fillColor: Colors.white,
-  //         focusColor: Colors.white,
-  //       ),
-  //     ),
-  //   );
-  // }
+  @override
+  void initState() {
+    super.initState();
+    loadCounter();
+  }
+
+  void loadCounter() async {
+    SharedPreferences.setMockInitialValues({});
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    // print("Load Counter");
+    setState(() {
+      _counter = pref.getBool('counter') ?? false;
+      name = pref.getString('name') ?? name;
+      workPlace = pref.getString('workPlace') ?? workPlace;
+      designation = pref.getString('designation') ?? designation;
+    });
+    // print(_counter);
+  }
+
+  void _changeCounter() async {
+    SharedPreferences.setMockInitialValues({});
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      _counter = true;
+      pref.setBool('counter', _counter);
+      _counter = pref.getBool('counter') ?? false;
+      name = txt_name.text;
+      workPlace = txt_workPlace.text;
+      designation = txt_designation.text;
+
+      pref.setString('name', name);
+      pref.setString('workPlace', workPlace);
+      pref.setString('designation', designation);
+    });
+  }
+
+  void save() {
+    name = txt_name.text;
+    workPlace = txt_workPlace.text;
+    designation = txt_designation.text;
+
+    if (txt_name.text != '' &&
+        txt_workPlace.text != '' &&
+        txt_designation.text != '') {
+      _changeCounter();
+      Future.delayed(const Duration(microseconds: 100), () {
+        //Navigate to HomePage
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+          return const HomePage();
+          //name: name, workPlace: workPlace, designation: designation,
+        }));
+      });
+    } else {
+      // print('Please filled all before click Save');
+      txt_name.text = '';
+      txt_workPlace.text = '';
+      txt_designation.text = '';
+    }
+  }
+
+  profileChecked() {
+    if (_counter) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+        return const HomePage();
+      }));
+      //Navigate to HomePage
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +118,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: Column(
         children: [
+          //profileChecked(),
           Flexible(
             flex: 1,
             child: Container(
@@ -110,7 +156,11 @@ class _SignInState extends State<SignIn> {
                           text: 'Your Name'),
                       //sizedBox(0.0, 15.0),
                       SizeBox(height: 0.0, width: 15.0),
-                      TextFields(width: 265, hintText: 'Enter your name'),
+                      TextFields(
+                        controller: txt_name,
+                        width: 265,
+                        hintText: 'Enter your name',
+                      ),
                     ],
                   )),
                   //sizedBox(15.0, 0.0),
@@ -124,7 +174,11 @@ class _SignInState extends State<SignIn> {
                           text: 'Work Place'),
                       //sizedBox(0.0, 15.0),
                       SizeBox(height: 0.0, width: 15.0),
-                      TextFields(width: 265, hintText: 'Enter work place'),
+                      TextFields(
+                        width: 265,
+                        hintText: 'Enter work place',
+                        controller: txt_workPlace,
+                      ),
                     ],
                   )),
                   //sizedBox(15.0, 0.0),
@@ -138,7 +192,11 @@ class _SignInState extends State<SignIn> {
                           text: 'Designation'),
                       //sizedBox(0.0, 10.0),
                       SizeBox(height: 0.0, width: 10.0),
-                      TextFields(width: 265, hintText: 'Enter designation'),
+                      TextFields(
+                        width: 265,
+                        hintText: 'Enter designation',
+                        controller: txt_designation,
+                      ),
                     ],
                   )),
 
@@ -161,7 +219,7 @@ class _SignInState extends State<SignIn> {
                           width: 140,
                           height: 65,
                           image: const AssetImage(''),
-                          onPress: () {},
+                          onPress: save,
                         ),
                         //sizedBox(0.0, 25.0),
                         SizeBox(height: 0.0, width: 25.0),

@@ -1,4 +1,3 @@
-import 'package:commissioning_calculator/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -14,7 +13,7 @@ class BottomTabNavigator extends StatelessWidget {
   }
 
   final List<Widget> pages = [
-    const HomePage(),
+    //HomePage(),
   ];
 
   @override

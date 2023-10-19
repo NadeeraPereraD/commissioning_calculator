@@ -1,5 +1,5 @@
+// ignore_for_file: unused_element, must_be_immutable
 import 'dart:async';
-
 import 'package:commissioning_calculator/screens/new_entry.dart';
 import 'package:commissioning_calculator/screens/past_entry.dart';
 import 'package:commissioning_calculator/screens/read_data.dart';
@@ -9,24 +9,41 @@ import 'package:commissioning_calculator/widgets/sized_box.dart';
 import 'package:commissioning_calculator/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
   var dateTime = DateTime.now();
   String _timeString = '';
   String _dateString = '';
 
+  String name = '';
+  String workPlace = '';
+  String designation = ''; 
+
+  void _loadCounter() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      name = pref.getString('name') ?? name;
+      workPlace = pref.getString('workPlace') ?? workPlace;
+      designation = pref.getString('designation') ?? designation;
+    });
+  }
+
   @override
   void initState() {
+    _loadCounter();
     _timeString = _formatDateTime(DateTime.now());
     _dateString = _formatDate(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
 
@@ -34,6 +51,7 @@ class _HomePageState extends State<HomePage> {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
     final String formattedDate = _formatDate(now);
+
     setState(() {
       _timeString = formattedDateTime;
       _dateString = formattedDate;
@@ -93,6 +111,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     getStatus();
+    //getProfile();
     return Scaffold(
       body: Column(
         children: [
@@ -113,19 +132,18 @@ class _HomePageState extends State<HomePage> {
                           size: 20, fontWeight: FontWeight.w700, text: status),
                       SizeBox(height: 5.0, width: 0.0),
                       ProfTextField(
-                          size: 17,
-                          fontWeight: FontWeight.w600,
-                          text: 'Your Name'),
+                          size: 17, fontWeight: FontWeight.w600, text: name),
                       SizeBox(height: 5.0, width: 0.0),
                       ProfTextField(
                           size: 15,
                           fontWeight: FontWeight.w600,
-                          text: 'Work Place'),
+                          text: workPlace),
                       SizeBox(height: 5.0, width: 0.0),
                       ProfTextField(
-                          size: 10,
-                          fontWeight: FontWeight.w600,
-                          text: 'Designation'),
+                        size: 10,
+                        fontWeight: FontWeight.w600,
+                        text: designation
+                      ),
                     ],
                   ),
 
@@ -152,10 +170,7 @@ class _HomePageState extends State<HomePage> {
                 ProfTextField(
                     size: 25.0, fontWeight: FontWeight.w600, text: 'Date'),
                 ProfTextField(
-                    size: 25.0,
-                    fontWeight: FontWeight.w600,
-                    text: _dateString
-                    ),
+                    size: 25.0, fontWeight: FontWeight.w600, text: _dateString),
               ],
             ),
           ),
